@@ -1,0 +1,37 @@
+{
+  "name": "@planship/vue",
+  "version": "0.3.0-alpha1",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rm -rf dist && vue-tsc",
+    "type-check": "vue-tsc --build --force",
+    "lint": "eslint . --ext .vue,.ts, --ignore-path .gitignore",
+    "lint:fix": "eslint --fix . --ext .vue,.ts, --ignore-path .gitignore",
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(ts|json)\"",
+    "publish-alpha": "pnpm build && pnpm publish --tag alpha --no-git-checks"
+  },
+  "dependencies": {
+    "@planship/fetch": "0.3.0-alpha3"
+  },
+  "devDependencies": {
+    "@tsconfig/node20": "^20.1.4",
+    "@types/node": "^20.14.5",
+    "@typescript-eslint/eslint-plugin": "^8.2.0",
+    "@typescript-eslint/parser": "^8.2.0",
+    "@vitejs/plugin-vue": "^5.0.5",
+    "@vue/eslint-config-typescript": "^13.0.0",
+    "@vue/tsconfig": "^0.5.1",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-vue": "^9.27.0",
+    "npm-run-all2": "^6.2.0",
+    "prettier": "^3.2.5",
+    "typescript": "~5.4.0",
+    "vue": "^3.4.31",
+    "vue-eslint-parser": "^9.4.3",
+    "vue-tsc": "^2.0.26"
+  }
+}
