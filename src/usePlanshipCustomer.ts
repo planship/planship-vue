@@ -80,7 +80,7 @@ export function usePlanshipCustomer<T extends EntitlementsBase>(
   if (!options) throw Error('No Planship plugin options')
 
   let fetchEntitlements = isServer
-  // if useState is provided via options (Eg. for Nuxt), initialize entitlementsDict with it
+  // if useState is provided via options (E.g. for Nuxt), initialize entitlementsDict with it
   const entitlementsDict = options.useState ? options.useState(customerId, () => ({})) : undefined
 
   if (!planshipCustomers[customerId]) {

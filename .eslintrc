@@ -1,21 +1,3 @@
-// {
-//   "root": true,
-//   // "parser": "@typescript-eslint/parser",
-//   "plugins": [
-//   //   "@typescript-eslint"
-//     "@vue/eslint-config-typescript"
-//   ],
-//   "extends": [
-//     "plugin:vue/vue3-essential",
-//     "@vue/eslint-config-typescript/recommended",
-//     "@vue/eslint-config-prettier"
-//   ],
-//   "rules": {
-//     "@typescript-eslint/no-inferrable-types": "off"
-//   },
-// }
-
-
 {
   "root": true,
   "parser": "vue-eslint-parser",

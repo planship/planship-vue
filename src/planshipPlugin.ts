@@ -3,7 +3,6 @@ import type { IPlanshipPluginOptions } from './types'
 import type { App } from 'vue'
 
 export const PLANSHIP_DEFAULT_BASE_URL = 'https://api.planship.io'
-
 export const PLANSHIP_KEY = 'planship'
 export const PLANSHIP_OPTIONS_KEY = 'planshipOption'
 
