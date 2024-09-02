@@ -1,4 +1,4 @@
-export { PlanshipPlugin } from './planshipPlugin'
-export { usePlanship } from './usePlanship'
-export { usePlanshipCustomer } from './usePlanshipCustomer'
-export { EntitlementsBase } from './types'
+export { PlanshipPlugin } from './planshipPlugin.js'
+export { usePlanship } from './usePlanship.js'
+export { usePlanshipCustomer } from './usePlanshipCustomer.js'
+export { EntitlementsBase } from './types.js'

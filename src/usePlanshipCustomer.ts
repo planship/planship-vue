@@ -2,13 +2,13 @@ import type { Ref } from 'vue'
 import { inject, ref, computed } from 'vue'
 import type { Entitlements } from '@planship/fetch'
 import { PlanshipCustomer } from '@planship/fetch'
-import { PLANSHIP_DEFAULT_BASE_URL, PLANSHIP_OPTIONS_KEY } from './planshipPlugin'
+import { PLANSHIP_DEFAULT_BASE_URL, PLANSHIP_OPTIONS_KEY } from './planshipPlugin.js'
 import type {
   EntitlementsBase,
   IPlanshipCustomerContext,
   TPlanshipCustomerContextPromiseMixin,
   IPlanshipPluginOptions
-} from './types'
+} from './types.js'
 
 const isServer = typeof window === 'undefined'
 

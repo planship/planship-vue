@@ -1,5 +1,5 @@
 import { Planship } from '@planship/fetch'
-import type { IPlanshipPluginOptions } from './types'
+import type { IPlanshipPluginOptions } from './types.js'
 import type { App } from 'vue'
 
 export const PLANSHIP_DEFAULT_BASE_URL = 'https://api.planship.io'
