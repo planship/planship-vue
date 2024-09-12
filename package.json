@@ -1,6 +1,6 @@
 {
   "name": "@planship/vue",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Planship SDK for Vue.js",
   "author": "pawel@planship.io",
   "license": "MIT",
