@@ -1,6 +1,6 @@
 {
   "name": "@planship/vue",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "Planship SDK for Vue.js",
   "author": "pawel@planship.io",
   "license": "MIT",
@@ -17,7 +17,7 @@
     "publish:latest": "pnpm build && pnpm publish"
   },
   "dependencies": {
-    "@planship/fetch": "0.3.2"
+    "@planship/fetch": "0.3.3"
   },
   "devDependencies": {
     "@tsconfig/node20": "^20.1.4",
