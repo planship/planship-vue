@@ -19,6 +19,8 @@ class PlanshipCustomerData {
 
   isEntitlementsFetching = ref(true)
 
+  fetchEntitlementsError = ref<Error | undefined>(undefined)
+
   entitlementsCallback(newEntitlements: Entitlements) {
     this.entitlementsDict.value = newEntitlements
   }
@@ -34,9 +36,9 @@ class PlanshipCustomerData {
       this.entitlementsDict.value = await this.planshipCustomerApiClient.getEntitlements(
         isServer ? undefined : this.entitlementsCallback.bind(this)
       )
+      this.fetchEntitlementsError.value = undefined
     } catch (e) {
-      console.error('Error fetching entitlements')
-      console.dir(e)
+      this.fetchEntitlementsError.value = e as Error
     } finally {
       this.isEntitlementsFetching.value = false
     }
@@ -54,6 +56,7 @@ class PlanshipCustomerData {
           : this.entitlementsDict.value
       ),
       isEntitlementsFetching: this.isEntitlementsFetching,
+      fetchEntitlementsError: this.fetchEntitlementsError,
       fetchEntitlements: this.fetchEntitlements.bind(this)
     }
   }

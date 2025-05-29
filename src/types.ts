@@ -30,6 +30,7 @@ export interface IPlanshipCustomerContext<TEntitlements extends EntitlementsBase
   entitlements: ComputedRef<TEntitlements | Entitlements>
   fetchEntitlements: () => void
   isEntitlementsFetching: Ref<boolean>
+  fetchEntitlementsError?: Ref<Error | undefined>
   planshipCustomerApiClient: PlanshipCustomerApi
 }
 
