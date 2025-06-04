@@ -77,6 +77,7 @@ async function _usePlanshipCustomerAsync<T extends EntitlementsBase>(
 
 export function usePlanshipCustomer<T extends EntitlementsBase>(
   customerId: string,
+  defaultEntitlementsDict?: Entitlements,
   entitlementsClass?: { new (e: Entitlements): T }
 ): TPlanshipCustomerContextPromiseMixin<T> {
   const options = inject<IPlanshipPluginOptions>(PLANSHIP_OPTIONS_KEY)
@@ -101,14 +102,14 @@ export function usePlanshipCustomer<T extends EntitlementsBase>(
     fetchEntitlements = true
   }
 
-  const defaultEntitlementsDict = options.defaultEntitlementsDict ?? {}
+  const fallbackEntitlements = options.defaultEntitlementsDict ?? defaultEntitlementsDict ?? {}
 
-  const asyncData = planshipCustomers[customerId].customerData(defaultEntitlementsDict, entitlementsClass)
+  const asyncData = planshipCustomers[customerId].customerData(fallbackEntitlements, entitlementsClass)
 
   let asyncDataPromise = _usePlanshipCustomerAsync(
     planshipCustomers[customerId],
     fetchEntitlements,
-    defaultEntitlementsDict,
+    fallbackEntitlements,
     entitlementsClass
   )
 
