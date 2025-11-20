@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@planship/fetch':
-        specifier: 0.3.5-alpha.1
-        version: 0.3.5-alpha.1
+        specifier: 0.3.5
+        version: 0.3.5
     devDependencies:
       '@tsconfig/node20':
         specifier: ^20.1.4
@@ -303,11 +303,11 @@ packages:
     resolution: {integrity: sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
 
-  '@planship/fetch@0.3.5-alpha.1':
-    resolution: {integrity: sha512-Jvim+zOi9TD7w3n9FjhoEvXWJrXPiE+pMOaZol8TUydh+P4nAeaWRe/TMWVnqzirWloDfXG68sxKUaMP0p0XBw==}
+  '@planship/fetch@0.3.5':
+    resolution: {integrity: sha512-tg9PCBnroREYdDLRXLyAtbyqHIe4VJsdzmn5KHdjRsdBex0fnI5oQN31S0mSt2qk5nN9MvFGdJ3oeTZDCHnEvQ==}
 
-  '@planship/models@0.3.5-alpha.1':
-    resolution: {integrity: sha512-df5gHxUqmVjs4tENjZ5JWinfmVq086+6AZr2Dq12v6bBak7Kq2YKqOxwG36ZrXg5c6MmxH0dT83Pd962/40QVg==}
+  '@planship/models@0.3.5':
+    resolution: {integrity: sha512-iIb0mhoA59Tw2lmRaptqFrtxj9Vmnr5kk+9Q9gSNGioj0TYOQh2O7Io8OuZpFULTdjC7GnTAtC5p+4jJJl6HXg==}
 
   '@rollup/rollup-android-arm-eabi@4.53.3':
     resolution: {integrity: sha512-mRSi+4cBjrRLoaal2PnqH82Wqyb+d3HsPUN/W+WslCXsZsyHa9ZeQQX/pQsZaVIWDkPcpV6jJ+3KLbTbgnwv8w==}
@@ -1341,11 +1341,11 @@ snapshots:
 
   '@pkgr/core@0.1.1': {}
 
-  '@planship/fetch@0.3.5-alpha.1':
+  '@planship/fetch@0.3.5':
     dependencies:
-      '@planship/models': 0.3.5-alpha.1
+      '@planship/models': 0.3.5
 
-  '@planship/models@0.3.5-alpha.1': {}
+  '@planship/models@0.3.5': {}
 
   '@rollup/rollup-android-arm-eabi@4.53.3':
     optional: true

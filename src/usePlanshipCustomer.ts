@@ -3,19 +3,16 @@ import { inject, ref, computed } from 'vue'
 import type { Entitlements } from '@planship/fetch'
 import { PlanshipCustomer } from '@planship/fetch'
 import { PLANSHIP_DEFAULT_BASE_URL, PLANSHIP_OPTIONS_KEY } from './planshipPlugin.js'
-import type {
-  EntitlementsBase,
-  IPlanshipCustomerContext,
-  TPlanshipCustomerContextPromiseMixin,
-  IPlanshipPluginOptions
-} from './types.js'
+import { EntitlementsBase } from './types.js'
+
+import type { IPlanshipCustomerContext, TPlanshipCustomerContextPromiseMixin, IPlanshipPluginOptions } from './types.js'
 
 const isServer = typeof window === 'undefined'
 
 class PlanshipCustomerData {
   planshipCustomerApiClient: PlanshipCustomer
 
-  entitlementsDict = ref({})
+  entitlementsDict = ref<Entitlements | undefined>(undefined)
 
   isEntitlementsFetching = ref(true)
 
@@ -25,7 +22,7 @@ class PlanshipCustomerData {
     this.entitlementsDict.value = newEntitlements
   }
 
-  constructor(planshipCustomerApiClient: PlanshipCustomer, entitlementsDict?: Ref<Entitlements>) {
+  constructor(planshipCustomerApiClient: PlanshipCustomer, entitlementsDict?: Ref<Entitlements | undefined>) {
     if (entitlementsDict) this.entitlementsDict = entitlementsDict
     this.planshipCustomerApiClient = planshipCustomerApiClient
   }
@@ -53,7 +50,7 @@ class PlanshipCustomerData {
       entitlements: computed(() =>
         entitlementsClass
           ? new entitlementsClass(this.entitlementsDict.value ?? fallbackEntitlements)
-          : this.entitlementsDict.value
+          : (this.entitlementsDict.value ?? fallbackEntitlements)
       ),
       isEntitlementsFetching: this.isEntitlementsFetching,
       fetchEntitlementsError: this.fetchEntitlementsError,
@@ -77,24 +74,26 @@ async function _usePlanshipCustomerAsync<T extends EntitlementsBase>(
 
 export function usePlanshipCustomer<T extends EntitlementsBase>(
   customerId: string,
-  defaultEntitlementsDict?: Entitlements,
-  entitlementsClass?: { new (e: Entitlements): T }
+  entitlementsClass?: { new (e: Entitlements): T },
+  defaultEntitlementsDict?: Entitlements
 ): TPlanshipCustomerContextPromiseMixin<T> {
   const options = inject<IPlanshipPluginOptions>(PLANSHIP_OPTIONS_KEY)
   if (!options) throw Error('No Planship plugin options')
 
   let fetchEntitlements = isServer
   // if useState is provided via options (E.g. for Nuxt), initialize entitlementsDict with it
-  const entitlementsDict = options.useState ? options.useState(customerId, () => ({})) : undefined
+  const entitlementsDict = options.useState
+    ? options.useState<Entitlements | undefined>(customerId, () => undefined)
+    : undefined
 
   if (!planshipCustomers[customerId]) {
     planshipCustomers[customerId] = new PlanshipCustomerData(
       new PlanshipCustomer(options.slug, customerId, options.auth, {
-        baseUrl: options.baseUrl || PLANSHIP_DEFAULT_BASE_URL,
+        baseUrl: options.baseUrl ?? PLANSHIP_DEFAULT_BASE_URL,
         webSocketUrl: options.webSocketUrl,
         debugLogging: options.debugLogging,
         extras: {
-          fetchApi: options.fetchApi || fetch
+          fetchApi: options.fetchApi ?? fetch
         }
       }),
       entitlementsDict
@@ -116,7 +115,10 @@ export function usePlanshipCustomer<T extends EntitlementsBase>(
   // update entitlementsDict (initialized with custom useState) after entitlements are fetched
   if (entitlementsDict && isServer) {
     asyncDataPromise = asyncDataPromise.then((value) => {
-      entitlementsDict.value = value.entitlements.value.entitlementsDict || value.entitlements.value
+      entitlementsDict.value =
+        value.entitlements.value instanceof EntitlementsBase
+          ? value.entitlements.value.entitlementsDict
+          : value.entitlements.value
       return value
     })
   }
